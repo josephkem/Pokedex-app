@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   cardMedia: {
@@ -25,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     textAlign: "center",
   },
+  link: {
+    textDecoration: "none",
+  },
 }));
 
 const PokemonCard = ({ pokemon, image }) => {
@@ -32,12 +36,14 @@ const PokemonCard = ({ pokemon, image }) => {
   const { id, name } = pokemon;
   return (
     <Grid item xs={12} sm={2} key={id}>
-      <Card className={classes.card}>
-        <CardMedia image={image} className={classes.cardMedia} />
-        <CardContent className={classes.cardContent}>
-          <Typography>{name}</Typography>
-        </CardContent>
-      </Card>
+      <Link to={`/pokemon/${id}`} className={classes.link}>
+        <Card className={classes.card}>
+          <CardMedia image={image} className={classes.cardMedia} />
+          <CardContent className={classes.cardContent}>
+            <Typography>{name}</Typography>
+          </CardContent>
+        </Card>
+      </Link>
     </Grid>
   );
 };
