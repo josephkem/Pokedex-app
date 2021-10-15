@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 };
 
 const pokemonReducer = (state = INITIAL_STATE, action) => {
-  switch ((action, type)) {
+  switch (action.type) {
     case TOGGLE_FAVOURITE:
       let pokemonFromFavorite = state.favorites.find(
         (favPokemon) => action.payload.id === favPokemon.id
