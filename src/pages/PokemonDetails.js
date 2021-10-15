@@ -12,6 +12,7 @@ import {
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { pokeType } from "../config/helper";
 import { connect } from "react-redux";
+import { toggleFavorite } from "../redux/actions";
 
 const styles = (theme) => ({
   pokemonContainer: {
@@ -70,6 +71,7 @@ class PokemonDetails extends Component {
     });
   }
   render() {
+    console.log(this.props.favorites);
     const { classes } = this.props;
     const { pokemon } = this.state;
     if (pokemon) {
@@ -85,7 +87,10 @@ class PokemonDetails extends Component {
               <hr className={classes.separator} />
               <Grid container>
                 <Grid item md={1}>
-                  <Button className={classes.favButton}>
+                  <Button
+                    className={classes.favButton}
+                    onClick={() => this.props.toggleFavorite(pokemon)}
+                  >
                     <FavoriteIcon style={{ color: "white", fontSize: "45" }} />
                   </Button>
                 </Grid>
@@ -137,9 +142,13 @@ class PokemonDetails extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  favorites: state.favorites,
+});
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  toggleFavorite: (pokemon) => dispatch(toggleFavorite(pokemon)),
+});
 
 export default withStyles(styles)(
   connect(mapStateToProps, mapDispatchToProps)(PokemonDetails)
