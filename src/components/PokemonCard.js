@@ -31,7 +31,7 @@ const PokemonCard = ({ pokemon, image }) => {
   const classes = useStyles();
   const { id, name } = pokemon;
   return (
-    <Grid item xs={12} sm={2}>
+    <Grid item xs={12} sm={2} key={id}>
       <Card className={classes.card}>
         <CardMedia image={image} className={classes.cardMedia} />
         <CardContent className={classes.cardContent}>
