@@ -70,6 +70,16 @@ class PokemonDetails extends Component {
       }
     });
   }
+
+  favoriteChecker = (pokemon) => {
+    let found = false;
+    this.props.favorites?.map((p) => {
+      if (p.id === pokemon.id) {
+        found = true;
+      }
+    });
+    return found;
+  };
   render() {
     console.log(this.props.favorites);
     const { classes } = this.props;
@@ -91,7 +101,12 @@ class PokemonDetails extends Component {
                     className={classes.favButton}
                     onClick={() => this.props.toggleFavorite(pokemon)}
                   >
-                    <FavoriteIcon style={{ color: "white", fontSize: "45" }} />
+                    <FavoriteIcon
+                      style={{
+                        color: this.favoriteChecker(pokemon) ? "red" : "white",
+                        fontSize: "45",
+                      }}
+                    />
                   </Button>
                 </Grid>
                 <Grid item md={2}>
