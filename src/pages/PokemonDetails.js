@@ -10,6 +10,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import { pokeType } from "../config/helper";
 
 const styles = (theme) => ({
   pokemonContainer: {
@@ -45,6 +46,7 @@ const styles = (theme) => ({
   },
   text: {
     fontSize: 30,
+    fontFamily: "Fantasy",
   },
 });
 
@@ -110,12 +112,15 @@ class PokemonDetails extends Component {
 
                 {types.map((pokemonType) => {
                   const { name } = pokemonType.type;
+                  let color = pokeType(name);
                   return (
                     <Grid item md={2}>
                       <Typography className={classes.text}>
                         Type
                         <br />
-                        {name}
+                        <span style={{ color: `${color}` }}>
+                          {name.toUpperCase()}
+                        </span>
                       </Typography>
                     </Grid>
                   );
