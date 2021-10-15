@@ -40,7 +40,9 @@ const PokemonCard = ({ pokemon, image }) => {
         <Card className={classes.card}>
           <CardMedia image={image} className={classes.cardMedia} />
           <CardContent className={classes.cardContent}>
-            <Typography>{name}</Typography>
+            <Typography>
+              {name.charAt(0).toUpperCase() + name.slice(1)}
+            </Typography>
           </CardContent>
         </Card>
       </Link>
