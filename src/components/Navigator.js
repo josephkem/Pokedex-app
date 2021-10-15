@@ -27,6 +27,15 @@ const Navigator = () => {
             Pokedex
           </Typography>
         </Link>
+        <Link to="/favorites" className={classes.link}>
+          <Typography
+            className={classes.title}
+            variant="h6"
+            style={{ marginLeft: 15 }}
+          >
+            Favorites
+          </Typography>
+        </Link>
       </Toolbar>
     </AppBar>
   );

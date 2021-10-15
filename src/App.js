@@ -6,6 +6,7 @@ import PokemonDetails from "./pages/PokemonDetails";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store";
+import Favorites from "./pages/Favorites";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Router>
           <Navigator />
           <Route exact path="/" component={Pokedex} />
+          <Route exact path="/favorites" component={Favorites} />
           <Route exact path="/pokemon/:id" component={PokemonDetails} />
         </Router>
       </PersistGate>
