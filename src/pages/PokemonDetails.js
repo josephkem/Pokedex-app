@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { pokeType } from "../config/helper";
+import { connect } from "react-redux";
 
 const styles = (theme) => ({
   pokemonContainer: {
@@ -136,4 +137,10 @@ class PokemonDetails extends Component {
   }
 }
 
-export default withStyles(styles)(PokemonDetails);
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default withStyles(styles)(
+  connect(mapStateToProps, mapDispatchToProps)(PokemonDetails)
+);

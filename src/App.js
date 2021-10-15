@@ -3,14 +3,21 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Pokedex from "./pages/Pokedex";
 import Navigator from "./components/Navigator";
 import PokemonDetails from "./pages/PokemonDetails";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./redux/store";
 
 function App() {
   return (
-    <Router>
-      <Navigator />
-      <Route exact path="/" component={Pokedex} />
-      <Route exact path="/pokemon/:id" component={PokemonDetails} />
-    </Router>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          <Navigator />
+          <Route exact path="/" component={Pokedex} />
+          <Route exact path="/pokemon/:id" component={PokemonDetails} />
+        </Router>
+      </PersistGate>
+    </Provider>
   );
 }
 
