@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@material-ui/core";
+import { Box, CircularProgress } from "@material-ui/core";
 import axios from "axios";
 import { POKEMON_API_URL, IMAGE_API_URL } from "../config/index";
 
 function Pokedex() {
+  const [pokemonData, setPokemonData] = useState(null);
   useEffect(() => {
-    axios.get(POKEMON_API_URL + "?limit=8").then((res) => {
-      console.log(res.data.results);
+    axios.get(POKEMON_API_URL + "?limit=800").then((res) => {
       if (res.status >= 200 && res.status < 300) {
         const { results } = res.data;
 
@@ -19,15 +19,21 @@ function Pokedex() {
             url: IMAGE_API_URL + index + ".png",
             name: pokemon.name,
           };
-          console.log("pokemonObject", pokemonObject);
-          console.log("pokemon", pokemon);
+          newPokemonData.push(pokemonObject);
         });
+        setPokemonData(newPokemonData);
       }
     });
   }, []);
   return (
     <Box>
-      <h1>Pokemon</h1>
+      {pokemonData ? (
+        pokemonData.map((pokemon) => {
+          return <h1>{pokemon.name}</h1>;
+        })
+      ) : (
+        <CircularProgress style={{ marginTop: 100 }} />
+      )}
     </Box>
   );
 }
