@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, CircularProgress, Grid } from "@material-ui/core";
+import { Box, CircularProgress, Grid, TextField } from "@material-ui/core";
 import axios from "axios";
 import { POKEMON_API_URL, IMAGE_API_URL } from "../config/index";
 import PokemonCard from "../components/PokemonCard";
@@ -36,6 +36,7 @@ function Pokedex() {
       }
     });
   }, []);
+
   return (
     <Box>
       {pokemonData ? (

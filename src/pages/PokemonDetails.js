@@ -8,11 +8,14 @@ import {
   Typography,
   Button,
   withStyles,
+  Card,
+  CardContent,
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { pokeType } from "../config/helper";
 import { connect } from "react-redux";
 import { toggleFavorite } from "../redux/actions";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 const styles = (theme) => ({
   pokemonContainer: {
@@ -50,6 +53,15 @@ const styles = (theme) => ({
     fontSize: 30,
     fontFamily: "Fantasy",
   },
+  statsContainer: {
+    padding: 5,
+    margin: "auto",
+  },
+  statsName: {
+    fontSize: 20,
+    fontFamily: "fantasy",
+    color: "red",
+  },
 });
 
 class PokemonDetails extends Component {
@@ -81,11 +93,12 @@ class PokemonDetails extends Component {
     return found;
   };
   render() {
-    console.log(this.props.favorites);
     const { classes } = this.props;
     const { pokemon } = this.state;
+    console.log(pokemon);
     if (pokemon) {
-      const { name, sprites, height, weight, types } = pokemon;
+      const { name, sprites, height, weight, types, stats } = pokemon;
+      console.log(stats);
       return (
         <Box>
           <Box className={classes.pokemonContainer}>
@@ -93,6 +106,34 @@ class PokemonDetails extends Component {
               {name}
             </Typography>
             <img className={classes.pokemonImage} src={sprites.front_default} />
+            <Box>
+              {stats.map((pokemonStats) => {
+                const { name } = pokemonStats.stat;
+                return (
+                  <Grid item xs={12} sm={4} className={classes.statsContainer}>
+                    <Typography className={classes.statsName}>
+                      {name.charAt(0).toUpperCase() + name.slice(1)}
+                    </Typography>
+
+                    <ProgressBar
+                      completed={pokemonStats.base_stat}
+                      customLabel={pokemonStats.base_stat}
+                      maxCompleted={200}
+                      baseBgColor="white"
+                      labelColor="black"
+                      bgColor="red"
+                      labelAlignment="center"
+                      labelSize="20px"
+                      transitionTimingFunction="ease"
+                      transitionDuration="1s"
+                      width="100%"
+                      height="18px"
+                    />
+                  </Grid>
+                );
+              })}
+            </Box>
+
             <Box className={classes.pokemonInfo}>
               <hr className={classes.separator} />
               <Grid container>
