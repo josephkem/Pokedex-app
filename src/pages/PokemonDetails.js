@@ -76,7 +76,6 @@ class PokemonDetails extends Component {
     const { match } = this.props;
     const { id } = match?.params;
     axios.get(`${POKEMON_API_URL}/${id}`).then((res) => {
-      console.log(res.data);
       if (res.status >= 200 && res.status < 300) {
         this.setState({ pokemon: res.data });
       }
@@ -95,10 +94,9 @@ class PokemonDetails extends Component {
   render() {
     const { classes } = this.props;
     const { pokemon } = this.state;
-    console.log(pokemon);
     if (pokemon) {
       const { name, sprites, height, weight, types, stats } = pokemon;
-      console.log(stats);
+
       return (
         <Box>
           <Box className={classes.pokemonContainer}>

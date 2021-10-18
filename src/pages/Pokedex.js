@@ -37,6 +37,8 @@ function Pokedex() {
     });
   }, []);
 
+  console.log(pokemonData);
+
   return (
     <Box>
       {pokemonData ? (
