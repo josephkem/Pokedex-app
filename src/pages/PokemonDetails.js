@@ -104,33 +104,6 @@ class PokemonDetails extends Component {
               {name}
             </Typography>
             <img className={classes.pokemonImage} src={sprites.front_default} />
-            <Box>
-              {stats.map((pokemonStats) => {
-                const { name } = pokemonStats.stat;
-                return (
-                  <Grid item xs={12} sm={4} className={classes.statsContainer}>
-                    <Typography className={classes.statsName}>
-                      {name.charAt(0).toUpperCase() + name.slice(1)}
-                    </Typography>
-
-                    <ProgressBar
-                      completed={pokemonStats.base_stat}
-                      customLabel={pokemonStats.base_stat}
-                      maxCompleted={200}
-                      baseBgColor="white"
-                      labelColor="black"
-                      bgColor="red"
-                      labelAlignment="center"
-                      labelSize="20px"
-                      transitionTimingFunction="ease"
-                      transitionDuration="1s"
-                      width="100%"
-                      height="18px"
-                    />
-                  </Grid>
-                );
-              })}
-            </Box>
 
             <Box className={classes.pokemonInfo}>
               <hr className={classes.separator} />
